@@ -1,14 +1,13 @@
 pipeline {
-    agent { 
-        docker { 
-            image 'python:3.5.1'
-            args '-v C:\\Users\\shill136\\.jenkins\\workspace\\python-test_main -w C:\\Users\\shill136\\.jenkins\\workspace\\python-test_main'
-        }
-    }
+    checkout scm
+
+    def customImage = docker.build("python:3.5.1")
     stages {
         stage('build') {
             steps {
-                sh 'python --version'
+                customImage.inside {
+                    sh 'python --version'
+                }
             }
         }
     }
