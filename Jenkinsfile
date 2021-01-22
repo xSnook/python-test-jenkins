@@ -1,6 +1,6 @@
 node {
 
-    docker.image("python:3.5.1").inside {
+    docker.image("python:3.6.0").inside {
         stages {
             stage('build') {
                 steps {
